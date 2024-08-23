@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "99ae16db-2c67-4944-ad42-4ea8f758ef00",
+		"name": "XAIport",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17783297"
+	},
+	"item": [
+		{
+			"name": "http://0.0.0.0:8001/upload-dataset/{dataset_id}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "zip_file",
+							"type": "file",
+							"src": "/home/z/Music/devnew_xaiservice/XAIport/dataprocess/val_images10k.zip"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8001/upload-dataset/t1",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8001",
+					"path": [
+						"upload-dataset",
+						"t1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8001/apply-perturbation/t1/gaussian_noise/2/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8001/apply-perturbation/t1/gaussian_noise/2/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"apply-perturbation",
+						"t1",
+						"gaussian_noise",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://0.0.0.0:8002/resnet/t1/gaussian_noise/2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8002/resnet/t1/gaussian_noise/2",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8002",
+					"path": [
+						"resnet",
+						"t1",
+						"gaussian_noise",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://0.0.0.0:8003/cam_xai/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dataset_id\": \"t1_gaussian_noise_2\",\n    \"algorithms\": [\"GradCAM\", \"HiResCAM\"]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8003/cam_xai/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8003",
+					"path": [
+						"cam_xai",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8004/evaluate_cam",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"dataset_id\": \"t1\",\n  \"model_name\": \"resnet50\",\n  \"perturbation_func\": \"gaussian_noise\",\n  \"severity\": \"2\",\n  \"cam_algorithms\": [\"GradCAM\", \"HiResCAM\"]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8004/evaluate_cam",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8004",
+					"path": [
+						"evaluate_cam"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8880/run_pipeline/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"upload_config\": {\n    \"server_url\": \"http://0.0.0.0:8001\",\n    \"datasets\": {\n      \"t1\": {\n        \"local_zip_path\": \"/home/z/Music/devnew_xaiservice/XAIport/dataprocess/val_images10k.zip\"\n      }\n    }\n  },    \n\n    \"perturbation_config\": {\n      \"server_url\": \"http://0.0.0.0:8001\",\n      \"datasets\": {\n        \"t1\": {\n          \"perturbation_type\": \"gaussian_noise\",\n          \"severity\": 2\n        }\n      }\n    },\n    \"model_config\": {\n      \"base_url\": \"http://0.0.0.0:8002\",\n      \"models\": {\n        \"t1\": {\n          \"model_name\": \"resnet\",\n          \"perturbation_type\": \"gaussian_noise\",\n          \"severity\": 2\n        }\n      }\n    },\n    \"xai_config\": {\n      \"base_url\": \"http://0.0.0.0:8003\",\n      \"datasets\": {\n        \"t1\": {\n          \"model_name\": \"resnet\",\n          \"dataset_id\": \"t1_gaussian_noise_1\",\n          \"algorithms\": [\"GradCAM\", \"HiResCAM\"]\n        }\n      }\n    },\n    \"evaluation_config\": {\n      \"base_url\": \"http://0.0.0.0:8004\",\n      \"datasets\": {\n        \"t1\": {\n          \"evaluation_metric\": \"evaluate_cam\",\n          \"model_name\": \"resnet50\",\n          \"perturbation_func\": \"gaussian_noise\",\n          \"severity\": \"2\",\n          \"xai_method\": \"cam_xai\",\n          \"algorithms\": [\"GradCAM\", \"HiResCAM\"]\n        }\n      }\n    }\n  }\n  ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8880/run_pipeline/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8880",
+					"path": [
+						"run_pipeline",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://0.0.0.0:8005/download_results/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"dataset_id\": \"t1204_gaussian_noise_3\",\n  \"model_name\": \"resnet50\",\n  \"perturbation_func\": \"gaussian_noise\",\n  \"severity\": \"3\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8005/download_results/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8005",
+					"path": [
+						"download_results",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

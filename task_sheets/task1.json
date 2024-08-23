@@ -1,0 +1,54 @@
+{
+  "upload_config": {
+    "server_url": "http://0.0.0.0:8001",
+    "datasets": {
+      "t1": {
+        "local_zip_path": "/home/z/Music/devnew_xaiservice/XAIport/dataprocess/val_images10k.zip"
+      }
+    }
+  },    
+
+    "perturbation_config": {
+      "server_url": "http://0.0.0.0:8001",
+      "datasets": {
+        "t1": {
+          "perturbation_type": "gaussian_noise",
+          "severity": 2
+        }
+      }
+    },
+    "model_config": {
+      "base_url": "http://0.0.0.0:8002",
+      "models": {
+        "t1": {
+          "model_name": "resnet",
+          "perturbation_type": "gaussian_noise",
+          "severity": 2
+        }
+      }
+    },
+    "xai_config": {
+      "base_url": "http://0.0.0.0:8003",
+      "datasets": {
+        "t1": {
+          "model_name": "resnet",
+          "dataset_id": "t1_gaussian_noise_1",
+          "algorithms": ["GradCAM", "HiResCAM"]
+        }
+      }
+    },
+    "evaluation_config": {
+      "base_url": "http://0.0.0.0:8004",
+      "datasets": {
+        "t1": {
+          "evaluation_metric": "evaluate_cam",
+          "model_name": "resnet50",
+          "perturbation_func": "gaussian_noise",
+          "severity": "2",
+          "xai_method": "cam_xai",
+          "algorithms": ["GradCAM", "HiResCAM"]
+        }
+      }
+    }
+  }
+  

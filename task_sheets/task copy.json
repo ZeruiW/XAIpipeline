@@ -1,0 +1,54 @@
+{
+  "upload_config": {
+    "server_url": "http://0.0.0.0:8001",
+    "datasets": {
+      "t1204": {
+        "local_zip_path": "/home/z/Music/devnew_xaiservice/XAIport/dataprocess/val_images10k.zip"
+      }
+    }
+  },    
+
+    "perturbation_config": {
+      "server_url": "http://0.0.0.0:8001",
+      "datasets": {
+        "t1204": {
+          "perturbation_type": "gaussian_noise",
+          "severity": 3
+        }
+      }
+    },
+    "model_config": {
+      "base_url": "http://0.0.0.0:8002",
+      "models": {
+        "t1204": {
+          "model_name": "resnet",
+          "perturbation_type": "gaussian_noise",
+          "severity": 3
+        }
+      }
+    },
+    "xai_config": {
+      "base_url": "http://0.0.0.0:8003",
+      "datasets": {
+        "t1204": {
+          "model_name": "resnet",
+          "dataset_id": "t1204_gaussian_noise_3",
+          "algorithms": ["GradCAM", "HiResCAM", "GradCAMPlusPlus", "XGradCAM", "LayerCAM"]
+        }
+      }
+    },
+    "evaluation_config": {
+      "base_url": "http://0.0.0.0:8004",
+      "datasets": {
+        "t1204": {
+          "evaluation_metric": "evaluate_cam",
+          "model_name": "resnet50",
+          "perturbation_func": "gaussian_noise",
+          "severity": "3",
+          "xai_method": "cam_xai",
+          "algorithms": ["GradCAM", "HiResCAM", "GradCAMPlusPlus", "XGradCAM", "LayerCAM"]
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,15 @@
+data_processing:
+  image_folder: 'val_images10k'
+  dataset_id: 'test_dataset'
+  storage_address: 'data'
+
+perturbation:
+  type: 'gaussian_noise'
+  severity: 3
+
+model:
+  name: 'resnet50'
+
+xai:
+  algorithms: ["GradCAM", "HiResCAM", "GradCAMPlusPlus", "XGradCAM", "LayerCAM"]
+

@@ -1,0 +1,13 @@
+{
+    "xai_config": {
+      "base_url": "http://0.0.0.0:8003",
+      "datasets": {
+        "val_images10k": {
+          "model_name": "resnet",
+          "dataset_id": "val_images10k",
+          "algorithms": ["GradCAM"]
+        }
+      }
+    }
+  }
+  
