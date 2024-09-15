@@ -1071,4 +1071,12 @@ with gr.Blocks() as app:
             gr.Markdown("This tab will contain functionalities for stream data.")
 
 # Launch Gradio app
-app.launch(share=True)
+if __name__ == "__main__":
+    app.launch(
+        server_name="0.0.0.0",  # Bind to all network interfaces
+        server_port=7860,       # Default Gradio port
+        share=True,             # Enable Gradio's temporary share link
+        auth=None,              # Remove authentication if you want it completely open
+        ssl_keyfile=None,       # Remove SSL config if not using HTTPS
+        ssl_certfile=None
+    )
