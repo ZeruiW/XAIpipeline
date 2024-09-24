@@ -26,15 +26,15 @@ XAIpipeline is a comprehensive Explainable AI (XAI) toolchain that addresses the
 
 The development of XAIpipeline is grounded in several key theoretical concepts and challenges in the field of Explainable AI:
 
-1. **Black Box Problem**: Many modern AI models, particularly deep learning systems, operate as "black boxes," making decisions that are difficult for humans to interpret [1]. XAIpipeline addresses this by implementing various XAI techniques to provide insights into model decision-making processes.
+1. **Black Box Problem**: Many modern AI models, particularly deep learning systems, operate as "black boxes," making decisions that are difficult for humans to interpret. XAIpipeline addresses this by implementing various XAI techniques to provide insights into model decision-making processes.
 
-2. **Model-Agnostic and Model-Specific Explanations**: XAIpipeline supports both model-agnostic methods (e.g., LIME, SHAP) that can explain any ML model, and model-specific methods tailored to particular architectures [2].
+2. **Model-Agnostic and Model-Specific Explanations**: XAIpipeline supports both model-agnostic methods (e.g., LIME, SHAP) that can explain any ML model, and model-specific methods tailored to particular architectures.
 
-3. **Local vs. Global Explanations**: The toolchain provides capabilities for both local explanations (explaining individual predictions) and global explanations (understanding overall model behavior) [3].
+3. **Local vs. Global Explanations**: The toolchain provides capabilities for both local explanations (explaining individual predictions) and global explanations (understanding overall model behavior).
 
-4. **Evaluation of Explanations**: XAIpipeline incorporates metrics for assessing the quality and reliability of generated explanations, addressing the challenge of quantifying explanation effectiveness [4].
+4. **Evaluation of Explanations**: XAIpipeline incorporates metrics for assessing the quality and reliability of generated explanations, addressing the challenge of quantifying explanation effectiveness.
 
-5. **Regulatory Compliance**: With the increasing focus on AI governance (e.g., EU AI Act, NIST AI Risk Management Framework), XAIpipeline supports efforts to meet emerging regulatory requirements for AI explainability [5].
+5. **Regulatory Compliance**: With the increasing focus on AI governance (e.g., EU AI Act, NIST AI Risk Management Framework), XAIpipeline supports efforts to meet emerging regulatory requirements for AI explainability.
 
 ## Key Features
 
