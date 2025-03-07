@@ -1,5 +1,9 @@
 # XAIpipeline: A Configuration-Driven Explainable AI Toolchain
 
+[![Watch the video](https://img.youtube.com/vi/Kq6j_wxF7wg/0.jpg)](https://youtu.be/Kq6j_wxF7wg)
+
+
+
 ## Table of Contents
 - [XAIpipeline: A Configuration-Driven Explainable AI Toolchain](#xaipipeline-a-configuration-driven-explainable-ai-toolchain)
   - [Table of Contents](#table-of-contents)
